@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
 </head>
 <body>
+    <div class="container">
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
@@ -30,7 +31,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'SocialAd') }}
+                        <img src="{{asset('/img/logo.png')}}" alt="SocialAD" height="50" width="50">
                     </a>
                 </div>
 
@@ -73,6 +74,16 @@
         </nav>
 
         @yield('content')
+
+
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p class="float-right"><a href="#">Back to top</a></p>
+        <p>&copy; 2017 SocialAD. &middot; <a href="{{ url('/privacy') }}">Privacy</a> &middot;</p>
+    </footer>
     </div>
 
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
