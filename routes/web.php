@@ -11,18 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index');
 
 Route::post('/keyword_stats', 'FbInsightsController@keywordStats');
 Route::get('/fb_insight', 'FbInsightsController@index')->name('home');
 Route::get('/fb_redirect', 'SocialAuthController@fbRedirect');
 Route::get('/fb_callback', 'SocialAuthController@fbCallback');
 
-Route::get('/privacy', function () {
-    return view('privacy');
-});
+Route::get('/privacy', 'HomeController@privacy');
 
 
 Auth::routes();

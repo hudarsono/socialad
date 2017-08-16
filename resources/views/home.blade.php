@@ -5,14 +5,10 @@
     <div class="row">
         <div>
             <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+                <div class="panel-heading">Social AD</div>
 
                 <div class="panel-body">
-                    <ul>
-                    @foreach ($tasks as $task)
-                        <li>{{ $task->body }}</li>
-                    @endforeach
-                    </ul>
+
                 </div>
             </div>
         </div>
