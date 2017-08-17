@@ -78,7 +78,7 @@
         <!-- FOOTER -->
         <footer>
             <p class="float-right"><a href="#">Back to top</a></p>
-            <p>&copy; 2017 SocialAD. &middot; <a href="{{ url('/privacy') }}">Privacy</a> &middot;</p>
+            <p>&copy; 2017 SocialAD. &middot; <a href="{{ url('/privacy') }}">Privacy</a> &middot; <a href="{{ url('/terms') }}">Terms</a> </p>
         </footer>
     </div>
 

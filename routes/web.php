@@ -19,6 +19,7 @@ Route::get('/fb_redirect', 'SocialAuthController@fbRedirect');
 Route::get('/fb_callback', 'SocialAuthController@fbCallback');
 
 Route::get('/privacy', 'HomeController@privacy');
+Route::get('/terms', 'HomeController@terms');
 
 
 Auth::routes();

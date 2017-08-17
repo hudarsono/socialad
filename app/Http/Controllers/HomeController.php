@@ -30,4 +30,9 @@ class HomeController extends Controller
     {
         return view('privacy');
     }
+
+    public function terms()
+    {
+        return view('terms');
+    }
 }
