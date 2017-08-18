@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'FbInsightsController@index');
 
 Route::post('/keyword_stats', 'FbInsightsController@keywordStats');
 Route::get('/fb_insight', 'FbInsightsController@index')->name('home');
