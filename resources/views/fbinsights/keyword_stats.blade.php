@@ -62,9 +62,11 @@
                         <thead>
                         <tr>
                             <th>Interest</th>
+                            @if (count(request()->input('params')) > 0)
                             @foreach (request()->input('params') as $param)
                                 <th>{{ action_type_humanize($param) }}</th>
                             @endforeach
+                            @endif
                             @if (count(request()->input('actions')) > 0)
                                 @foreach (request()->input('actions') as $action)
                                     <th>{{ action_type_humanize($action) }}</th>
@@ -76,18 +78,34 @@
                         @foreach ($data['data'] as $interest)
                         <tr>
                             <td>{{ $interest['name'] }}</td>
+                            @if (count(request()->input('params')) > 0)
                             @foreach (request()->input('params') as $param)
-                                @if (in_array($param, ['ctr', 'cpc', 'spend']))
-                                    <td>{{ round($interest[$param],2) }}</td>
+                                @if (in_array($param, ['cpc', 'spend','cpm','cpp']))
+                                    <td>{{ '$'.round($interest[$param],2) }}</td>
+                                @elseif ( $param == 'ctr')
+                                    <td>{{ round($interest[$param]*100,2).'%' }}</td>
                                 @else
                                     <td>{{ $interest[$param] }}</td>
                                 @endif
                             @endforeach
+                            @endif
                             @if (count(request()->input('actions')) > 0)
                                 @foreach (request()->input('actions') as $action)
                                     <td>
-                                        @if (isset($interest['actions']) && action_value($action, $interest['actions']))
-                                            {{ action_value($action, $interest['actions']) }}
+                                        @if (isset($interest['actions']))
+                                            @if ($action == 'cost/purchase')
+                                                @if (isset($interest['spend']) && action_value('offsite_conversion.fb_pixel_purchase', $interest['actions']))
+                                                    {{ '$'.(float)round($interest['spend']/action_value('offsite_conversion.fb_pixel_purchase', $interest['actions']),2) }}
+                                                @endif
+                                            @elseif ($action == 'cost/comment')
+                                                @if (isset($interest['spend']) && action_value('comment', $interest['actions']))
+                                                    {{ '$'.round($interest['spend']/action_value('comment', $interest['actions']),2) }}
+                                                @endif
+                                            @else
+                                                @if (action_value($action, $interest['actions']))
+                                                    {{ action_value($action, $interest['actions']) }}
+                                                @endif
+                                            @endif
                                         @endif
                                     </td>
                                 @endforeach
