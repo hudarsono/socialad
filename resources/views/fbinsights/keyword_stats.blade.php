@@ -101,6 +101,10 @@
                                                 @if (isset($interest['spend']) && action_value('comment', $interest['actions']))
                                                     {{ '$'.round($interest['spend']/action_value('comment', $interest['actions']),2) }}
                                                 @endif
+                                            @elseif ($action == 'cost/linkclick')
+                                                @if (isset($interest['spend']) && action_value('link_click', $interest['actions']))
+                                                    {{ '$'.round($interest['spend']/action_value('link_click', $interest['actions']),2) }}
+                                                @endif
                                             @else
                                                 @if (action_value($action, $interest['actions']))
                                                     {{ action_value($action, $interest['actions']) }}

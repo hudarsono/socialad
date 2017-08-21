@@ -32,7 +32,12 @@ class FbInsightsController extends Controller
 
 		try {
 			$ad = new Ad(request()->ad_id);
-			$r = $ad->getKeywordStats(array('name',"impressions", "ctr", "cpc", "reach", "spend", "actions"));
+			// $params = array(
+			//   'date' => '2017-07-24',
+			// );
+
+			$fields = array('name',"impressions", "ctr", "cpc", "reach", "spend", "clicks", "cpm", "cpp", "actions");
+			$r = $ad->getKeywordStats($fields);
 
 			$data = $r->getResponse()->getContent();
 		}

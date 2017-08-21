@@ -20,6 +20,7 @@ function action_type_humanize($action_type) {
 		'cpp' => "Cost 1k reach",
 		'cost/purchase' => "Cost per Purchase",
 		'cost/comment' => "Cost per Comment",
+		'cost/linkclick' => "Cost per LinkClick",
 		// 'attention_event' => "Attention Event",
 		// 'landing_page_view' => "Landing Page View",
 		'like' => "Page Like",
@@ -74,6 +75,7 @@ function action_list() {
 		'offsite_conversion.fb_pixel_lead',
 		'cost/purchase',
 		'comment',
-		'cost/comment'
+		'cost/comment',
+		'cost/linkclick'
 		];
 }
