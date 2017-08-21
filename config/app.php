@@ -179,6 +179,7 @@ return [
 
         // Facebook Service Provider
         Laravel\Socialite\SocialiteServiceProvider::class,
+        Laraveldaily\Quickadmin\QuickadminServiceProvider::class
 
     ],
 

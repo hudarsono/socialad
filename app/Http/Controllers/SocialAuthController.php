@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use App\FacebookService;
 use Socialite;
 use App\User;
@@ -24,8 +25,13 @@ class SocialAuthController extends Controller
     {
         $providerUser = \Socialite::driver('facebook')->user(); 
 
-        $user = $service->createOrGetUser($providerUser);
+        try {
+            $user = $service->createOrGetUser($providerUser);
 
+        }
+        catch(\Exception $e) {
+          return redirect::back()->withErrors([$e->getMessage()]);
+        }
         auth()->login($user);
 
         return redirect()->to('/fb_insight');

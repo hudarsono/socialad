@@ -3,6 +3,9 @@
 namespace App;
 
 use Laravel\Socialite\Contracts\User as ProviderUser;
+use Illuminate\Http\Request;
+use App\Role;
+use Exception;
 
 class FacebookService
 {
@@ -13,18 +16,22 @@ class FacebookService
 
         if ($user) {
             // update token 
-            $user->update(['fb_access_token' => $providerUser->token]);
+            $user->fb_access_token = $providerUser->token;
+            $user->name = $providerUser->getName();
+            $user->save();
 
             return $user;
         } else {
+            //return Redirect::back()->withErrors(["Sorry, you are not yet registered."]);
+            throw new Exception("Sorry, you are not yet registered.");
+            // $user = User::create([
+            //     'name' => $providerUser->getName(),
+            //     'email' => $providerUser->getEmail(),
+            //     'role_id' => Role::USER_ROLE_ID,
+            //     'fb_access_token' => $providerUser->token
+            // ]);
 
-            $user = User::create([
-                'name' => $providerUser->getName(),
-                'email' => $providerUser->getEmail(),
-                'fb_access_token' => $providerUser->token
-            ]);
-
-            return $user;
+            // return $user;
 
         }
 
